@@ -18,6 +18,9 @@
   "homepage": "https://github.com/zxccvvv/FlixComponent#readme",
   "devDependencies": {
     "@react-native-community/eslint-config": "^3.0.1",
-    "eslint": "^8.14.0"
+    "docdash": "^1.2.0",
+    "eslint": "^8.14.0",
+    "jsdoc-to-markdown": "^7.1.1",
+    "prop-types": "^15.8.1"
   }
 }
