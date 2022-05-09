@@ -1,9 +1,7 @@
-'use strict';
-
 /**
- * @namespace FlixText
+ * Flix Component
+ * @author Flix<flixy121@gmail.com>
  */
-
 import PropTypes from "prop-types";
 import React from "react";
 import { Text, TextProps } from "react-native";
@@ -36,34 +34,37 @@ const myCustomProps = {
   /** set style of text */
   style: PropTypes.object,
   /** String or Text Elememt */
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-    .isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 /**
- * Flix Custom Text
- * @component FlixText
- * @description Custom Component of Text React Native
- * 
- * Usage:
- * ```js
- * <FlixText bold italic>Awesome Text is show here</FlixText>
- * ```
- * 
- * 
- * @typedef {Object | TextProps} CustomProps
- * @prop {('XXL'|'XL'|'L'|'M'|'S'|'XS'|'XXS'|number)} fontSize
- * @prop {boolean} italic
- * @prop {boolean} bold
- * @prop {boolean} color
- * @prop {boolean} mb
- * @prop {object} style
+ * @typedef {Object | TextProps} FlixTextProps
+ * @description <a href="https://reactnative.dev/docs/text#props" target="_blank">Support React Native Text Props</a>
+ * @type {TextProps}
+ * @prop {('XXL'|'XL'|'L'|'M'|'S'|'XS'|'XXS'|number)} [fontSize=14] - Set fontSize directly
+ * @prop {boolean} [italic] - Set text to italic
+ * @prop {boolean} [bold] - Set text to bold
+ * @prop {boolean} [color='#DFDCE3'] - Set color of Text
+ * @prop {boolean} [mb={marginBottom:14}] - Add `{marginBottom:14}` at Text Style
+ * @prop {object} [style] - Set style of Text
  * @prop {React.ReactNode|string} children
- * 
- * @param {CustomProps} props
  */
 
-const FlixText = ({ fontSize, italic, bold, color, mb, children }) => {
+/**
+ * Flix Custom Text
+ * @component
+ * @description Custom Component of Text React Native
+ *
+ * @example
+ * return (
+ *   <FlixText bold italic>Awesome Text is show here</FlixText>
+ * )
+ *
+ * @param {React.FunctionComponent<FlixTextProps>} props
+ */
+
+const FlixText = (props) => {
+  let { fontSize, italic, bold, color, mb, children } = props;
   let customStyle = {};
 
   if (fontSize == "XXL") fontSize = constan.Text_XXL;
