@@ -17,10 +17,24 @@
   },
   "homepage": "https://github.com/zxccvvv/FlixComponent#readme",
   "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-proposal-object-rest-spread": "^7.17.3",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.17.10",
     "@react-native-community/eslint-config": "^3.0.1",
-    "better-docs": "^2.7.2",
+    "babel-loader": "^8.2.5",
+    "babel-plugin-react-native-web": "^0.17.7",
     "eslint": "^8.14.0",
+    "file-loader": "^6.2.0",
+    "metro-react-native-babel-preset": "^0.70.3",
     "prop-types": "^15.8.1",
-    "react-native": "0.67.4"
+    "react": "^18.1.0",
+    "react-art": "^18.1.0",
+    "react-docgen": "^5.4.0",
+    "react-dom": "^18.1.0",
+    "react-native-web": "^0.17.7",
+    "react-styleguidist": "^11.2.0",
+    "webpack": "^5.72.1"
   }
 }
