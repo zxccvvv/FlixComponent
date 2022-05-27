@@ -3,12 +3,13 @@ const path = require("path");
 const { version } = require("./package");
 
 module.exports = {
+  ribbon: {
+    url: "https://github.com/zxccvvv/",
+    text: "Fork Me",
+  },
   usageMode: "expand",
   require: ["@babel/polyfill"],
   components: "src/**/[A-Z]*.js",
-  propsParser(filePath, source, resolver, handlers) {
-    return require("react-docgen").parse(source, resolver, handlers);
-  },
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, ".js");
     return `import { ${name} } from 'FlixComponent';`;

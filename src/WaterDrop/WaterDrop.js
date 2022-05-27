@@ -21,6 +21,7 @@ const Ring = ({ delay, size, duration, color }) => {
     ],
   };
   React.useEffect(() => {
+    console.log("[WaterDrop] ring");
     startAnimation();
   }, [ring]);
 
@@ -61,11 +62,11 @@ const Ring = ({ delay, size, duration, color }) => {
  *
  * @param {Object} props
  * @param {number} [props.delay=750] - delay of animation component
- * @param {number} [props.size=10] - size of Loader
+ * @param {number} [props.size=20] - size of Loader
  * @param {string} [props.color='#5F952F'] - color of Loader
  */
 
-const WaterDrop = ({ delay = 750, size = 10, color = "#5F952F" }) => {
+const WaterDrop = ({ delay = 750, size = 20, color = "#5F952F" }) => {
   return (
     <View
       style={{
@@ -95,7 +96,7 @@ WaterDrop.propTypes = {
 
 WaterDrop.defaultProps = {
   delay: 750,
-  size: 10,
+  size: 20,
   color: "#5F952F",
 };
 

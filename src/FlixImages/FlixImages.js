@@ -1,9 +1,36 @@
+import PropTypes from "prop-types";
 import React, { useEffect, useRef, useState } from "react";
 import { ActivityIndicator, Dimensions, Image, View } from "react-native";
 
 const window = Dimensions.get("window");
 
-export default FlixImages = (props) => {
+/**
+ * @version 1.0.0
+ * @author [Flix](https://github.com/zxccvvv)
+ *
+ *
+ * @components
+ * @param {Object} props
+ * @param {number} props.width - set width of image
+ * @param {number} props.height - set height of image
+ * @param {boolean} props.loadingWaterDrop - replace ActivityIndicator with WaterDrop when loading image
+ * @public
+ */
+
+const ImageProps = {
+  /** set Width of Image */
+  width: PropTypes.number,
+  /** set Height of Image */
+  height: PropTypes.number,
+  /** replace `<ActivityIndicator/>` with `<WaterDrop/>` when loading image */
+  loadingWaterDrop: PropTypes.bool,
+};
+
+const ImageDefaultProps = {
+  loadingWaterDrop: false,
+};
+
+const FlixImages = (props) => {
   const [width, setWidth] = useState(props.width);
   const [height, setHeight] = useState(props.height);
   const [isLoading, setIsLoading] = useState(true);
@@ -50,6 +77,16 @@ export default FlixImages = (props) => {
   }, [source]);
 
   useEffect(() => {
+    if (props.width && width !== props.width) {
+      setWidth(props.width);
+      InitImage();
+    } else if (props.height && height !== props.height) {
+      setHeight(props.height);
+      InitImage();
+    }
+  });
+
+  useEffect(() => {
     if (isError) {
       setSource(require("./errorImage.png"));
     }
@@ -75,6 +112,11 @@ export default FlixImages = (props) => {
             props.style,
           ]}
         >
+          {/* {props?.loadingWaterDrop ? (
+            <WaterDrop />
+          ) : (
+            <ActivityIndicator size={"large"} color="orangered" />
+          )} */}
           <ActivityIndicator size={"large"} color="orangered" />
         </View>
       );
@@ -107,3 +149,8 @@ export default FlixImages = (props) => {
     );
   }
 };
+
+FlixImages.propTypes = ImageProps;
+FlixImages.defaultProps = ImageDefaultProps;
+
+export default FlixImages;
