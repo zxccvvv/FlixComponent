@@ -1,1 +1,1 @@
-export * from './Flix';
+export { default } from "./src";
