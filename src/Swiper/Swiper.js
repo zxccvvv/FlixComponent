@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { Animated, Dimensions, FlatList, View } from "react-native";
 import Images from "../Images";
@@ -6,15 +7,23 @@ const { width, height } = Dimensions.get("window");
 
 const WrappedFlatlist = Animated.createAnimatedComponent(FlatList);
 
+const SwiperProps = {
+  /** collection of Images */
+  data: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /** set style inside component */
+  contentStyle: PropTypes.object,
+};
+
 /**
  * @typedef Props
  * @type {object}
- * @prop { import("react-native").ViewStyle } contentStyle
+ * @prop {import("react-native").ViewStyle } contentStyle
+ * @prop {string[]} data
  */
 /**
  * @extends {React.PureComponent<Props, {}>}}
  */
-export default class Swiper extends React.PureComponent {
+class Swiper extends React.PureComponent {
   state = {
     sizeWidth: null,
     sizeHeight: null,
@@ -24,50 +33,10 @@ export default class Swiper extends React.PureComponent {
   animatedValue = new Animated.Value(0);
   pageIndex = 0;
 
-  _autoPlay = null;
-
-  /**
-   * List function to handling component
-   */
-
-  // componentDidMount() {
-  //   this.autoPlay();
-  // }
-
-  // autoPlay() {
-  //   if (this._autoPlay) clearTimeout(this._autoPlay);
-  //   this._autoPlay = setTimeout(() => {
-  //     if (this.pageIndex == this.props.data.length - 1) {
-  //       this.pageIndex = 0;
-  //       this.scrollToIndex(this.pageIndex || 0);
-  //       return;
-  //     }
-  //     this.pageIndex += 1;
-  //     this.scrollToIndex(this.pageIndex || 0);
-  //   }, 2500);
-  //   this.props.autoPlay == false && clearTimeout(this._autoPlay);
-  // }
-
-  // scrollToIndex(index) {
-  //   this.refFlatlist && this.refFlatlist.scrollToIndex({index});
-  //   Platform.OS === 'android' &&
-  //     this.onScrollEnd({
-  //       nativeEvent: {
-  //         contentOffset: {
-  //           x: index * this.state.sizeWidth,
-  //         },
-  //       },
-  //     });
-  // }
-
   onScrollEnd = (e) => {
     const currentIndex = this.pageIndex;
     const contentOffset = e.nativeEvent.contentOffset.x;
     this.pageIndex = Math.abs((contentOffset / this.state.sizeWidth).toFixed());
-    //do nothing if current index is same as last scroll
-    // if (currentIndex === this.pageIndex) return;
-    // this.forceUpdate();
-    // this.autoPlay();
   };
 
   getParallaxStyles(i) {
@@ -162,7 +131,6 @@ export default class Swiper extends React.PureComponent {
    */
 
   render() {
-    // if (this.props.data == null || this.props.data.length === 0) return null;
     return (
       <View>
         <WrappedFlatlist
@@ -179,23 +147,11 @@ export default class Swiper extends React.PureComponent {
           scrollToOverflowEnabled={false}
           scrollEventThrottle={2}
           initialNumToRender={1}
-          // onTouchStart={() => this._autoPlay && clearTimeout(this._autoPlay)}
           initialScrollIndex={0}
-          // onScrollToIndexFailed={e => {
-          //   console.log('error??', e);
-          //   const wait = new Promise(resolve => setTimeout(resolve, 500));
-          //   wait.then(() => {
-          //     this.refFlatlist.scrollToIndex({index: 0});
-          //   });
-          // }}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { x: this.animatedValue } } }],
             { useNativeDriver: true }
           )}
-          // onMomentumScrollEnd={x => {
-          //   console.log('onMomentumScrollEnd');
-          //   this.onScrollEnd(x);
-          // }}
           onScrollEndDrag={(x) => {
             console.log("onScrollEndDrag");
             this.onScrollEnd(x);
@@ -206,3 +162,7 @@ export default class Swiper extends React.PureComponent {
     );
   }
 }
+
+Swiper.propTypes = SwiperProps;
+
+export default Swiper;
