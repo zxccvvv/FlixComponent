@@ -3,6 +3,7 @@ const path = require("path");
 const { version } = require("./package");
 
 module.exports = {
+  styleguideDir: "docs",
   ribbon: {
     url: "https://github.com/zxccvvv/",
     text: "Fork Me",
