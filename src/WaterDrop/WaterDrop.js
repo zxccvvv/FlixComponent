@@ -58,8 +58,6 @@ const Ring = ({ delay, size, duration, color }) => {
  *
  * @author [Yudi Iswandi (Flix)](https://github.com/zxccvvv)
  *
- * @visibleName Water Drop
- *
  * @param {Object} props
  * @param {number} [props.delay=750] - delay of animation component
  * @param {number} [props.size=20] - size of Loader

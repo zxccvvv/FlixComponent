@@ -2,9 +2,9 @@ Basic usage:
 
 ```jsx
 import React from "react";
-import { FlixImages } from "FlixComponent";
+import { Images } from "FlixComponent";
 
-<FlixImages
+<Images
   source={"https://picsum.photos/400/200"}
   width={400}
   loadingWaterDrop

@@ -25,7 +25,7 @@ const window = Dimensions.get("window");
  * @extends {React.PureComponent<Props, {}>}}
  */
 
-export default class FlixImages extends React.PureComponent {
+export default class Images extends React.PureComponent {
   state = {
     width: this.props.width,
     height: this.props.height,
@@ -45,7 +45,7 @@ export default class FlixImages extends React.PureComponent {
   };
 
   componentDidUpdate(_, prevS) {
-    console.log("[FlixImages] _", _.source);
+    console.log("[Images] _", _.source);
     const { source } = this.props;
     if (_.source !== source) {
       // this.setState({source},()=>this.componentDidMount())

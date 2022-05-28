@@ -1,6 +1,6 @@
 import React from "react";
 import { Animated, Dimensions, FlatList, View } from "react-native";
-import FlixImages from "../FlixImages";
+import Images from "../Images";
 
 const { width, height } = Dimensions.get("window");
 
@@ -14,7 +14,7 @@ const WrappedFlatlist = Animated.createAnimatedComponent(FlatList);
 /**
  * @extends {React.PureComponent<Props, {}>}}
  */
-export default class FlixSwiper extends React.PureComponent {
+export default class Swiper extends React.PureComponent {
   state = {
     sizeWidth: null,
     sizeHeight: null,
@@ -109,7 +109,7 @@ export default class FlixSwiper extends React.PureComponent {
         ]}
       >
         <Animated.View style={this.getParallaxStyles(i)}>
-          <FlixImages source={item} width={this.state.sizeWidth} i={i} />
+          <Images source={item} width={this.state.sizeWidth} i={i} />
         </Animated.View>
       </View>
     );

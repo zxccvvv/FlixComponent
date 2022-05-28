@@ -5,9 +5,7 @@ import { ActivityIndicator, Dimensions, Image, View } from "react-native";
 const window = Dimensions.get("window");
 
 /**
- * @version 1.0.0
  * @author [Flix](https://github.com/zxccvvv)
- *
  *
  * @components
  * @param {Object} props
@@ -30,7 +28,7 @@ const ImageDefaultProps = {
   loadingWaterDrop: false,
 };
 
-const FlixImages = (props) => {
+const Images = (props) => {
   const [width, setWidth] = useState(props.width);
   const [height, setHeight] = useState(props.height);
   const [isLoading, setIsLoading] = useState(true);
@@ -83,6 +81,10 @@ const FlixImages = (props) => {
     } else if (props.height && height !== props.height) {
       setHeight(props.height);
       InitImage();
+    } else if (props.width && props.height) {
+      throw new Error(
+        "Cannot set width and height, you can only use one of them, and put the rest inside style"
+      );
     }
   });
 
@@ -130,9 +132,9 @@ const FlixImages = (props) => {
       <RenderWithLoading>
         <Image
           source={typeof source === "string" ? { uri: source } : source}
+          {...props}
           style={[{ width, height }, props.style]}
           imageStyle={[{ width, height }, props.imageStyle]}
-          blurRadius={props.blurRadius}
         >
           {props.children}
         </Image>
@@ -144,13 +146,14 @@ const FlixImages = (props) => {
         <Image
           source={typeof source === "string" ? { uri: source } : source}
           style={[{ width, height }, props.style]}
+          {...props}
         />
       </RenderWithLoading>
     );
   }
 };
 
-FlixImages.propTypes = ImageProps;
-FlixImages.defaultProps = ImageDefaultProps;
+Images.propTypes = ImageProps;
+Images.defaultProps = ImageDefaultProps;
 
-export default FlixImages;
+export default Images;
