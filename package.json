@@ -1,6 +1,6 @@
 {
   "name": "flixcomponent",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Flix Custom Component",
   "main": "index.js",
   "scripts": {
